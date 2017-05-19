@@ -1,0 +1,12 @@
+* Stata code to perform an ANCOVA, using the Nambour skin cancer prevention trial as an example
+* read in the data
+insheet using "C:\temp\nambour.csv", comma
+* log-transform the data
+gen l_betac_b=log(betac_b)
+gen l_betac_f=log(betac_f)
+* Calculate the baseline mean
+egen float meanb = mean(l_betac_b)
+* Difference the baseline mean from every baseline observation
+gen adiff=l_betac_b-meanb
+* ANCOVA using glm
+glm l_betac_f adiff group
