@@ -1,5 +1,5 @@
-# RTM
-Code to examine regression to the mean in SAS, Stata and R
+# Regression to the mean
+Code to examine regression to the mean in SAS, Stata, SPSS and R
 
 This code is based upon the analysis in Barnett et al published in the International Journal of Epidemiology: https://www.ncbi.nlm.nih.gov/pubmed/15333621. The code was last updated in September 2009.
 
