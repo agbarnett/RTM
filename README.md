@@ -1,2 +1,6 @@
 # RTM
 Code to examine regression to the mean in SAS, Stata and R
+
+This code is based upon the analysis in Barnett et al published in the International Journal of Epidemiology: https://www.ncbi.nlm.nih.gov/pubmed/15333621. The code was last updated in September 2009.
+
+There is code to calculate the expected size of the regression to the mean effect in SAS and R, and an example Analysis of Covariance (ANCOVA) using proc glmmod in SAS, lm in R, glm in Stata, and REGRESSION in SPSS, as well as a brief description of the assumptions of ANCOVA.
