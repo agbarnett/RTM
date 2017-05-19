@@ -1,0 +1,36 @@
+*** SPSS code to perform an ANCOVA, using the Nambour skin cancer prevention trial as an example
+*** read in the data (users should change the directory structure in the "FILE=" line).
+GET DATA
+/TYPE=TXT
+/FILE='\\ihbi-users.ihbi.qut.edu.au\docs\nambour.csv'
+/DELCASE=LINE
+/DELIMITERS=","
+/ARRANGEMENT=DELIMITED
+/FIRSTCASE=2
+/IMPORTCASE=ALL
+/VARIABLES=
+betac_b F4.2
+betac_f F4.2
+group F1.0.
+CACHE.
+EXECUTE.
+DATASET NAME DataSet1 WINDOW=FRONT.
+*** Log-transform the baseline and follow-up results.
+COMPUTE l_betac_b=LN(betac_b).
+EXECUTE.
+COMPUTE l_betac_f=LN(betac_f).
+EXECUTE.
+*** calculate the baseline mean.
+COMPUTE meanb=-0.7494546.
+EXECUTE.
+*** Difference the baseline mean from every baseline observation.
+COMPUTE adiff=l_betac_b-meanb.
+EXECUTE.
+*** ANCOVA using linear regression.
+REGRESSION
+/MISSING LISTWISE
+/STATISTICS COEFF OUTS R ANOVA
+/CRITERIA=PIN(.05) POUT(.10)
+/NOORIGIN
+/DEPENDENT l_betac_f
+/METHOD=ENTER adiff group.
